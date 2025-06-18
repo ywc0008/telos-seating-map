@@ -150,11 +150,35 @@ export default function App() {
   function handleDragEnd(event: DragEndEvent) {
     const { over, active } = event;
     if (over && active) {
-      // 배치 안한 직원 영역으로 이동하는 경우
-      if (over.id.toString().startsWith("waiting-")) {
-        movePerson(active.id as string, null);
+      const activePersonId = active.id as string;
+      const overSeatId = over.id as string;
+      
+      // 대기 영역으로 이동하는 경우
+      if (overSeatId.startsWith("waiting-")) {
+        movePerson(activePersonId, null);
       } else {
-        movePerson(active.id as string, over.id as string);
+        // 이동하려는 좌석에 이미 다른 직원이 있는지 확인
+        const personInTargetSeat = getPersonBySeat(overSeatId);
+        
+        if (personInTargetSeat) {
+          // 자리 교체: 두 직원의 좌석을 서로 바꿈
+          const activePerson = getPersonById(activePersonId);
+          if (activePerson) {
+            setPeople((prev) =>
+              prev.map((p) => {
+                if (p.id === activePersonId) {
+                  return { ...p, seat: overSeatId };
+                } else if (p.id === personInTargetSeat.id) {
+                  return { ...p, seat: activePerson.seat };
+                }
+                return p;
+              })
+            );
+          }
+        } else {
+          // 빈 좌석으로 이동
+          movePerson(activePersonId, overSeatId);
+        }
       }
     }
     setActiveId(null);
