@@ -19,7 +19,9 @@ export default function Seat({ id, children }: SeatProps) {
       ref={setNodeRef}
       className={`
         relative
-        min-h-[80px] 
+        min-w-[80px]
+        min-h-[90px] 
+        p-2
         border-2 
         rounded-md 
         flex 

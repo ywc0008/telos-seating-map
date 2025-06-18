@@ -6,7 +6,8 @@ export default function EmptySlot({ className = "" }: EmptySlotProps) {
   return (
     <div 
       className={`
-        size-18
+        min-w-[80px]
+        min-h-[90px] 
         border-2 
         border-dashed 
         border-gray-300 
