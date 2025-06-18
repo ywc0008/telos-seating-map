@@ -15,7 +15,6 @@ import UnableSeat from "./components/UnableSeat";
 import WaitingSlot from "./components/WaitingSlot";
 
 import "./App.css";
-import { Separator } from "./components/ui/separator";
 import { EmployeeData } from "./data/employeeData";
 
 // 좌석 타입 정의
@@ -58,13 +57,14 @@ const seats = {
   upperFour: [{ id: "UF1" }, { id: "UF2" }, { id: "UF3" }],
   // 상고구역 5
   upperFive: [{ id: "UFi1" }, { id: "UFi2" }, { id: "UFi3" }],
+
   // 가운데 1
   middleOne: [{ id: "MO1" }, { id: "MO2" }, { id: "MO3" }],
   // 가운데 2
   middleTwo: [
     { id: "MT1" },
     { id: "MT2" },
-    { id: "MT3", empty: true }, // 빈 칸
+    { id: "MT3" }, 
     { id: "MT4" },
     { id: "MT5" },
     { id: "MT6" },
@@ -76,9 +76,11 @@ const seats = {
     { id: "MTh3" },
     { id: "MTh4" },
     { id: "MTh5" },
+    { id: "MTh6" },
   ],
   // 가운데 4
   middleFour: [{ id: "MF1" }, { id: "MF2" }, { id: "MF3" }],
+
   // 회의실 1
   meeting1: Array.from({ length: 10 }, (_, i) => ({
     id: `M1-${i + 1}`,
@@ -224,11 +226,11 @@ export default function App() {
           텔로스 자리배치도
         </h1>
 
-        <div className="flex flex-col max-w-7xl mx-auto">
+        <div className="flex flex-col gap-5 max-w-7xl mx-auto">
           <div className="flex space-x-10">
             {/* 창고구역 */}
             <div className="border-2 border-gray-300 p-2.5 bg-white rounded-lg">
-              <h3 className="text-center font-semibold mb-2.5">창고구역</h3>
+              <h3 className="text-center font-semibold text-nowrap">창고구역</h3>
             </div>
 
             {/* 상단 영역 */}
@@ -236,18 +238,25 @@ export default function App() {
               {seats.upperOne.map((seat) => renderSeat(seat))}
             </div>
 
+            <div className="w-4 bg-black self-stretch" />
+
             <div className="grid grid-cols-2 gap-10">
               {seats.upperTwo.map((seat) => renderSeat(seat))}
             </div>
+
+            <div className="w-4 bg-black self-stretch" />
 
             <div className="grid grid-cols-2 gap-10">
               {seats.upperThree.map((seat) => renderSeat(seat))}
             </div>
 
+            <div className="w-4 bg-black self-stretch" />
+
             <div className="grid grid-cols-1 gap-10">
               {seats.upperFour.map((seat) => renderSeat(seat))}
             </div>
 
+            <div className="w-4 bg-black self-stretch" />
 
             <div className="grid grid-cols-1 gap-10">
               {seats.upperFive.map((seat) => renderSeat(seat))}
@@ -259,7 +268,7 @@ export default function App() {
                 비상구
               </div>
               <div className="bg-gray-200 p-5 text-center rounded-md">
-                소냉바
+               스낵바
               </div>
             </div>
           </div>
