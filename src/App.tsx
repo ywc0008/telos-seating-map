@@ -225,11 +225,11 @@ export default function App() {
   // 좌석 렌더링 헬퍼 함수
   const renderSeat = (seat: SeatType) => {
     if (seat.empty) {
-      return <EmptySlot key={seat.id} />;
+      return <EmptySlot />;
     }
 
     return (
-      <Seat key={seat.id} id={seat.id}>
+      <Seat id={seat.id}>
         {(() => {
           const person = getPersonBySeat(seat.id);
           return person ? (
@@ -259,31 +259,41 @@ export default function App() {
 
             {/* 상단 영역 */}
             <div className="grid grid-cols-2 gap-10">
-              {seats.upperOne.map((seat) => renderSeat(seat))}
+              {seats.upperOne.map((seat) => (
+                <div key={seat.id}>{renderSeat(seat)}</div>
+              ))}
             </div>
 
             <div className="w-4 bg-black self-stretch" />
 
             <div className="grid grid-cols-2 gap-10">
-              {seats.upperTwo.map((seat) => renderSeat(seat))}
+              {seats.upperTwo.map((seat) => (
+                <div key={seat.id}>{renderSeat(seat)}</div>
+              ))}
             </div>
 
             <div className="w-4 bg-black self-stretch" />
 
             <div className="grid grid-cols-2 gap-10">
-              {seats.upperThree.map((seat) => renderSeat(seat))}
+              {seats.upperThree.map((seat) => (
+                <div key={seat.id}>{renderSeat(seat)}</div>
+              ))}
             </div>
 
             <div className="w-4 bg-black self-stretch" />
 
             <div className="grid grid-cols-1 gap-10">
-              {seats.upperFour.map((seat) => renderSeat(seat))}
+              {seats.upperFour.map((seat) => (
+                <div key={seat.id}>{renderSeat(seat)}</div>
+              ))}
             </div>
 
             <div className="w-4 bg-black self-stretch" />
 
             <div className="grid grid-cols-1 gap-10">
-              {seats.upperFive.map((seat) => renderSeat(seat))}
+              {seats.upperFive.map((seat) => (
+                <div key={seat.id}>{renderSeat(seat)}</div>
+              ))}
             </div>
 
             {/* 비상구 */}
@@ -308,25 +318,33 @@ export default function App() {
 
             {/* 중앙 좌석들 */}
             <div className="grid grid-cols-1 gap-10">
-              {seats.middleOne.map((seat) => renderSeat(seat))}
+              {seats.middleOne.map((seat) => (
+                <div key={seat.id}>{renderSeat(seat)}</div>
+              ))}
             </div>
 
             <div className="w-4 bg-black self-stretch" />
 
             <div className="grid grid-cols-2 gap-10">
-              {seats.middleTwo.map((seat) => renderSeat(seat))}
+              {seats.middleTwo.map((seat) => (
+                <div key={seat.id}>{renderSeat(seat)}</div>
+              ))}
             </div>
 
             <div className="w-4 bg-black self-stretch" />
 
             <div className="grid grid-cols-2 gap-10">
-              {seats.middleThree.map((seat) => renderSeat(seat))}
+              {seats.middleThree.map((seat) => (
+                <div key={seat.id}>{renderSeat(seat)}</div>
+              ))}
             </div>
 
             <div className="w-4 bg-black self-stretch" />
 
             <div className="grid grid-cols-1 gap-10">
-              {seats.middleFour.map((seat) => renderSeat(seat))}
+              {seats.middleFour.map((seat) => (
+                <div key={seat.id}>{renderSeat(seat)}</div>
+              ))}
             </div>
 
             {/* 탕비실 & 싱크대 */}
@@ -367,7 +385,26 @@ export default function App() {
               <div className="bg-gray-200 p-5 text-center mb-2.5 rounded">
                 책장
               </div>
-              {seats.room.map((seat) => renderSeat(seat))}
+              <div className="grid grid-cols-3 gap-2.5">
+                {/* 1번 위치 */}
+                <div key="room-1">{renderSeat(seats.room[0])}</div>
+                {/* 2번 위치 - 빈 공간 */}
+                <div key="room-empty-2" className="min-w-[80px] min-h-[90px]"></div>
+                {/* 3번 위치 */}
+                <div key="room-3">{renderSeat(seats.room[1])}</div>
+                {/* 4번 위치 - 빈 공간 */}
+                <div key="room-empty-4" className="min-w-[80px] min-h-[90px]"></div>
+                {/* 5번 위치 - 빈 공간 */}
+                <div key="room-empty-5" className="min-w-[80px] min-h-[90px]"></div>
+                {/* 6번 위치 */}
+                <div key="room-6">{renderSeat(seats.room[2])}</div>
+                {/* 7번 위치 */}
+                <div key="room-7">{renderSeat(seats.room[3])}</div>
+                {/* 8번 위치 */}
+                <div key="room-8">{renderSeat(seats.room[4])}</div>
+                {/* 9번 위치 */}
+                <div key="room-9">{renderSeat(seats.room[5])}</div>
+              </div>
             </div>
           </div>
         </div>
