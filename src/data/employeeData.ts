@@ -23,6 +23,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "대표이사",
     department: "전략경영팀",
     gender: "male" as const,
+    seat: "R1",
   },
   {
     id: "p4",
@@ -47,6 +48,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "과장",
     department: "디자인팀",
     gender: "female" as const,
+    seat: "MF2",
   },
   {
     id: "p7",
@@ -54,6 +56,8 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "주임",
     department: "디자인팀",
     gender: "female" as const,
+    seat: "MF3",
+
   },
   // 마케팅팀
   {
@@ -71,6 +75,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "대리",
     department: "그래픽팀",
     gender: "male" as const,
+    seat: "MT4",
   },
   {
     id: "p10",
@@ -78,6 +83,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "사원",
     department: "그래픽팀",
     gender: "female" as const,
+    seat: "MT3",
   },
   {
     id: "p11",
@@ -85,6 +91,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "사원",
     department: "그래픽팀",
     gender: "male" as const,
+    seat: "MT2",
   },
   {
     id: "p12",
@@ -99,6 +106,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "주임",
     department: "그래픽팀",
     gender: "male" as const,
+    seat: "MT6",
   },
   {
     id: "p14",
@@ -106,6 +114,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "주임",
     department: "그래픽팀",
     gender: "female" as const,
+    seat: "MT1",
   },
   // 메타개발팀
   {
@@ -147,6 +156,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "과장",
     department: "R&D팀",
     gender: "male" as const,
+    seat: "R2",
   },
   {
     id: "p20",
@@ -154,6 +164,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "대리",
     department: "R&D팀",
     gender: "female" as const,
+    seat: "R3",
   },
   {
     id: "p21",
@@ -161,6 +172,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "대리",
     department: "R&D팀",
     gender: "female" as const,
+    seat: "R6",
   },
   {
     id: "p21",
@@ -168,6 +180,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "수습",
     department: "R&D팀",
     gender: "female" as const,
+    seat: "R5",
   },
   {
     id: "p21",
@@ -175,7 +188,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "주임",
     department: "R&D팀",
     gender: "male" as const,
-    seat: "UR5",
+    seat: "R4",
   },
   // 서비스팀
   {
@@ -241,6 +254,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "주임",
     department: "메타기획팀",
     gender: "male" as const,
+    seat: "MTh3",
   },
   // 전북영업본부
   {

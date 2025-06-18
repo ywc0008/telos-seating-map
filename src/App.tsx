@@ -273,9 +273,9 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex">
+          <div className="flex space-x-10 ml-[150px]">
             {/* 휴게공간 */}
-            <div className="col-start-1 row-start-2 border-2 border-gray-300 p-2.5 bg-white rounded-lg">
+            <div className="border-2 border-gray-300 p-2.5 bg-white rounded-lg">
               <h3 className="text-center font-semibold mb-2.5">휴게공간</h3>
               <div className="bg-gray-200 h-24 flex items-center justify-center rounded">
                 책장
@@ -283,24 +283,30 @@ export default function App() {
             </div>
 
             {/* 중앙 좌석들 */}
-            <div className="col-start-2 row-start-2 grid grid-cols-4 gap-2.5">
+            <div className="grid grid-cols-1 gap-10">
               {seats.middleOne.map((seat) => renderSeat(seat))}
             </div>
 
-            <div className="col-start-2 row-start-2 grid grid-cols-3 gap-2.5 mt-5">
+            <div className="w-4 bg-black self-stretch" />
+
+            <div className="grid grid-cols-2 gap-10">
               {seats.middleTwo.map((seat) => renderSeat(seat))}
             </div>
 
-            <div className="col-start-2 row-start-2 grid grid-cols-5 gap-2.5 mt-5">
+            <div className="w-4 bg-black self-stretch" />
+
+            <div className="grid grid-cols-2 gap-10">
               {seats.middleThree.map((seat) => renderSeat(seat))}
             </div>
 
-            <div className="col-start-2 row-start-2 grid grid-cols-3 gap-2.5 mt-5">
+            <div className="w-4 bg-black self-stretch" />
+
+            <div className="grid grid-cols-1 gap-10">
               {seats.middleFour.map((seat) => renderSeat(seat))}
             </div>
 
             {/* 탕비실 & 싱크대 */}
-            <div className="col-start-3 row-start-2 flex flex-col gap-2.5">
+            <div className="flex flex-col gap-2.5">
               <div className="bg-blue-500 text-white p-5 text-center rounded-md">
                 탕비실
               </div>
@@ -309,7 +315,8 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div className="flex">
+          
+          <div className="flex ml-[150px]">
             {/* 회의실 1 & 2 */}
             <div className="col-span-2 row-start-3 flex gap-5">
               <div className="flex-1 border-2 border-gray-300 p-5 bg-white rounded-lg">
