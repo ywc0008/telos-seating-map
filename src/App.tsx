@@ -387,14 +387,14 @@ export default function App() {
               </div> */}
               <div className="grid grid-cols-3 gap-2.5">
                 {/* 1번 위치 */}
-                <div key="R1">{renderSeat(seats.room[0])}</div>
+                <div key="room-pos-1">{renderSeat(seats.room[0])}</div>
                 {/* 2번 위치 - 빈 공간 */}
                 <div
                   key="room-empty-2"
                   className="min-w-[80px] min-h-[90px]"
                 ></div>
                 {/* 3번 위치 */}
-                <div key="R2">{renderSeat(seats.room[1])}</div>
+                <div key="room-pos-3">{renderSeat(seats.room[1])}</div>
                 {/* 4번 위치 - 빈 공간 */}
                 <div
                   key="room-empty-4"
@@ -406,13 +406,13 @@ export default function App() {
                   className="min-w-[80px] min-h-[90px]"
                 ></div>
                 {/* 6번 위치 */}
-                <div key="R3">{renderSeat(seats.room[2])}</div>
+                <div key="room-pos-6">{renderSeat(seats.room[2])}</div>
                 {/* 7번 위치 */}
-                <div key="R4">{renderSeat(seats.room[3])}</div>
+                <div key="room-pos-7">{renderSeat(seats.room[3])}</div>
                 {/* 8번 위치 */}
-                <div key="R5">{renderSeat(seats.room[4])}</div>
+                <div key="room-pos-8">{renderSeat(seats.room[4])}</div>
                 {/* 9번 위치 */}
-                <div key="R6">{renderSeat(seats.room[5])}</div>
+                <div key="room-pos-9">{renderSeat(seats.room[5])}</div>
               </div>
             </div>
           </div>

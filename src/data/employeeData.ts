@@ -175,7 +175,7 @@ export const EmployeeData: EmployeeInterface[] = [
     seat: "R2",
   },
   {
-    id: "p21",
+    id: "p22",
     name: "김예지",
     position: "수습",
     department: "R&D팀",
@@ -183,7 +183,7 @@ export const EmployeeData: EmployeeInterface[] = [
     seat: "R3",
   },
   {
-    id: "p21",
+    id: "p23",
     name: "송주환",
     position: "주임",
     department: "R&D팀",
@@ -192,7 +192,7 @@ export const EmployeeData: EmployeeInterface[] = [
   },
   // 서비스팀
   {
-    id: "p22",
+    id: "p24",
     name: "이용주",
     position: "대리",
     department: "서비스팀",
@@ -200,7 +200,7 @@ export const EmployeeData: EmployeeInterface[] = [
     seat: "UO4",
   },
   {
-    id: "p23",
+    id: "p25",
     name: "이우창",
     position: "사원",
     department: "서비스팀",
@@ -208,7 +208,7 @@ export const EmployeeData: EmployeeInterface[] = [
     seat: "UT4",
   },
   {
-    id: "p24",
+    id: "p26",
     name: "육장훈",
     position: "수습",
     department: "서비스팀",
@@ -216,7 +216,7 @@ export const EmployeeData: EmployeeInterface[] = [
     seat: "UT6",
   },
   {
-    id: "p25",
+    id: "p27",
     name: "김찬규",
     position: "주임",
     department: "서비스팀",
@@ -224,7 +224,7 @@ export const EmployeeData: EmployeeInterface[] = [
     seat: "UT2",
   },
   {
-    id: "p26",
+    id: "p28",
     name: "양지훈",
     position: "주임",
     department: "서비스팀",
@@ -232,7 +232,7 @@ export const EmployeeData: EmployeeInterface[] = [
     seat: "UT5",
   },
   {
-    id: "p27",
+    id: "p29",
     name: "이진규",
     position: "주임",
     department: "서비스팀",
@@ -240,7 +240,7 @@ export const EmployeeData: EmployeeInterface[] = [
     seat: "UO6",
   },
   {
-    id: "p28",
+    id: "p30",
     name: "코디르벡",
     position: "주임",
     department: "서비스팀",
@@ -249,7 +249,7 @@ export const EmployeeData: EmployeeInterface[] = [
   },
   // 메타기획팀
   {
-    id: "p29",
+    id: "p31",
     name: "김원민",
     position: "주임",
     department: "메타기획팀",
@@ -258,7 +258,7 @@ export const EmployeeData: EmployeeInterface[] = [
   },
   // 전북영업본부
   {
-    id: "p30",
+    id: "p32",
     name: "유정주",
     position: "본부장",
     department: "전북영업본부",
@@ -267,7 +267,7 @@ export const EmployeeData: EmployeeInterface[] = [
   },
   // 프린트
   {
-    id: "p31",
+    id: "p33",
     name: "프린트",
     position: "",
     department: "",
