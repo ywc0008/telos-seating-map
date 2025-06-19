@@ -93,13 +93,13 @@ export const EmployeeData: EmployeeInterface[] = [
     gender: "male" as const,
     seat: "MT2",
   },
-  {
-    id: "p12",
-    name: "김서연",
-    position: "주임",
-    department: "그래픽팀",
-    gender: "female" as const,
-  },
+  // {
+  //   id: "p12",
+  //   name: "김서연",
+  //   position: "주임",
+  //   department: "그래픽팀",
+  //   gender: "female" as const,
+  // },
   {
     id: "p13",
     name: "김정규",
