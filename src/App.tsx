@@ -455,7 +455,7 @@ export default function App() {
         </div>
       </div>
 
-      <DragOverlay>
+      <DragOverlay style={{ zIndex: 9999 }}>
         {activeId
           ? (() => {
               const person = getPersonById(activeId);
