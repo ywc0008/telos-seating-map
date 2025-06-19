@@ -53,7 +53,7 @@ export default function Employee({ employeeData, onMiddleClick }: EmployeeProps)
     >
       <Badge className={`text-[10px] min-w-[50px] text-center ${badgeColor}`}>{employeeData.department}</Badge>
       <span className="text-[15px]">{employeeData.gender === 'male' ? '🧑‍💼' : '👩‍💼'}</span>
-      <span className="text-[10px] font-bold text-center">{employeeData.name} {employeeData.position}</span>
+      <span className="text-[10px] font-bold text-center text-nowrap">{employeeData.name} {employeeData.position}</span>
     </div>
   );
 } 
