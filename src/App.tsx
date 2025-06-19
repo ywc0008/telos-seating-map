@@ -12,6 +12,7 @@ import Seat from "./components/Seat";
 import Employee from "./components/Employee";
 import EmptySlot from "./components/EmptySlot";
 import WaitingSlot from "./components/WaitingSlot";
+import Gogi from "./components/Gogi";
 
 import "./App.css";
 import { EmployeeData } from "./data/employeeData";
@@ -104,6 +105,10 @@ const seats = {
 
 export default function App() {
   const [people, setPeople] = useState<EmployeeInterface[]>(EmployeeData);
+  const [gogiPosition, setGogiPosition] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
   const [panelPosition, setPanelPosition] = useState({
     x: window.innerWidth - 300,
     y: 100,
@@ -146,36 +151,50 @@ export default function App() {
   }
 
   function handleDragEnd(event: DragEndEvent) {
-    const { over, active } = event;
-    if (over && active) {
-      const activePersonId = active.id as string;
-      const overSeatId = over.id as string;
+    const { over, active, delta } = event;
+    if (active) {
+      const activeId = active.id as string;
 
-      // 대기 영역으로 이동하는 경우
-      if (overSeatId.startsWith("waiting-")) {
-        movePerson(activePersonId, null);
-      } else {
-        // 이동하려는 좌석에 이미 다른 직원이 있는지 확인
-        const personInTargetSeat = getPersonBySeat(overSeatId);
+      // 고양이를 드래그하는 경우
+      if (activeId === "gogi") {
+        // 현재 드래그 위치를 절대 위치로 설정
+        const currentX = gogiPosition?.x || window.innerWidth - 400;
+        const currentY = gogiPosition?.y || 150;
+        setGogiPosition({
+          x: currentX + delta.x,
+          y: currentY + delta.y,
+        });
+      } else if (over) {
+        // 직원을 드래그하는 경우
+        const activePersonId = activeId;
+        const overSeatId = over.id as string;
 
-        if (personInTargetSeat) {
-          // 자리 교체: 두 직원의 좌석을 서로 바꿈
-          const activePerson = getPersonById(activePersonId);
-          if (activePerson) {
-            setPeople((prev) =>
-              prev.map((p) => {
-                if (p.id === activePersonId) {
-                  return { ...p, seat: overSeatId };
-                } else if (p.id === personInTargetSeat.id) {
-                  return { ...p, seat: activePerson.seat };
-                }
-                return p;
-              })
-            );
-          }
+        // 대기 영역으로 이동하는 경우
+        if (overSeatId.startsWith("waiting-")) {
+          movePerson(activePersonId, null);
         } else {
-          // 빈 좌석으로 이동
-          movePerson(activePersonId, overSeatId);
+          // 이동하려는 좌석에 이미 다른 직원이 있는지 확인
+          const personInTargetSeat = getPersonBySeat(overSeatId);
+
+          if (personInTargetSeat) {
+            // 자리 교체: 두 직원의 좌석을 서로 바꿈
+            const activePerson = getPersonById(activePersonId);
+            if (activePerson) {
+              setPeople((prev) =>
+                prev.map((p) => {
+                  if (p.id === activePersonId) {
+                    return { ...p, seat: overSeatId };
+                  } else if (p.id === personInTargetSeat.id) {
+                    return { ...p, seat: activePerson.seat };
+                  }
+                  return p;
+                })
+              );
+            }
+          } else {
+            // 빈 좌석으로 이동
+            movePerson(activePersonId, overSeatId);
+          }
         }
       }
     }
@@ -226,17 +245,16 @@ export default function App() {
       return <EmptySlot />;
     }
 
+    const person = getPersonBySeat(seat.id);
+
     return (
       <Seat id={seat.id}>
-        {(() => {
-          const person = getPersonBySeat(seat.id);
-          return person ? (
-            <Employee
-              employeeData={person}
-              onMiddleClick={() => handleEmployeeDoubleClick(person.id)}
-            />
-          ) : null;
-        })()}
+        {person && (
+          <Employee
+            employeeData={person}
+            onMiddleClick={() => handleEmployeeDoubleClick(person.id)}
+          />
+        )}
       </Seat>
     );
   };
@@ -299,7 +317,11 @@ export default function App() {
             {/* 비상구 */}
             <div className="col-start-3 row-start-1 flex flex-col gap-2.5">
               <div className="bg-green-500 text-white p-5 text-center rounded-md">
-                <img src={emergencyExitImg} alt="비상구" className="size-8 h-auto" />
+                <img
+                  src={emergencyExitImg}
+                  alt="비상구"
+                  className="size-8 h-auto"
+                />
                 비상구
               </div>
               {/* <div className="bg-gray-200 p-5 text-center rounded-md">
@@ -418,12 +440,26 @@ export default function App() {
           </div>
         </div>
 
+        {/* 고양이 - 절대 위치 */}
+        {gogiPosition && (
+          <div
+            style={{
+              position: "fixed",
+              left: `${gogiPosition.x}px`,
+              top: `${gogiPosition.y}px`,
+              zIndex: 999,
+            }}
+          >
+            <Gogi id="gogi" name="고기" />
+          </div>
+        )}
+
         {/* 배치 안한 직원 영역 - Floating Panel */}
         <div
           ref={panelRef}
           className="fixed border-2 border-orange-300 bg-orange-50 rounded-lg shadow-2xl"
           style={{
-            left: `${panelPosition.x-20}px`,
+            left: `${panelPosition.x - 20}px`,
             top: `${panelPosition.y}px`,
             width: "300px",
             maxHeight: "80vh",
@@ -438,8 +474,17 @@ export default function App() {
               배치 안한 직원 ({peopleWithoutSeat.length}명)
             </h3>
           </div>
-          <div className="p-4 overflow-y-auto" style={{ maxHeight: "calc(80vh - 60px)" }}>
+          <div
+            className="p-4 overflow-y-auto"
+            style={{ maxHeight: "calc(80vh - 60px)" }}
+          >
             <div className="grid grid-cols-2 gap-2.5">
+              {/* 고양이가 처음에 여기에 표시 */}
+              {!gogiPosition && (
+                <div className="bg-orange-100 p-2 rounded-md border-2 border-orange-300 min-h-[90px] flex items-center justify-center">
+                  <Gogi id="gogi" name="고기" />
+                </div>
+              )}
               {waitingSlots.map((slotId) => {
                 const person = peopleWithoutSeat.find(
                   (_, index) => `waiting-${index + 1}` === slotId
@@ -458,6 +503,9 @@ export default function App() {
       <DragOverlay style={{ zIndex: 9999 }}>
         {activeId
           ? (() => {
+              if (activeId === "gogi") {
+                return <Gogi id="gogi" name="고기" />;
+              }
               const person = getPersonById(activeId);
               return person ? <Employee employeeData={person} /> : null;
             })()
