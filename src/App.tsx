@@ -423,10 +423,10 @@ export default function App() {
           ref={panelRef}
           className="fixed border-2 border-orange-300 bg-orange-50 rounded-lg shadow-2xl"
           style={{
-            left: `${panelPosition.x}px`,
+            left: `${panelPosition.x-20}px`,
             top: `${panelPosition.y}px`,
-            width: "280px",
-            maxHeight: "600px",
+            width: "300px",
+            maxHeight: "80vh",
             zIndex: 1000,
           }}
         >
@@ -435,10 +435,10 @@ export default function App() {
             onMouseDown={handlePanelMouseDown}
           >
             <h3 className="text-center font-semibold text-orange-800">
-              배치 안한 직원
+              배치 안한 직원 ({peopleWithoutSeat.length}명)
             </h3>
           </div>
-          <div className="p-4 overflow-y-auto" style={{ maxHeight: "550px" }}>
+          <div className="p-4 overflow-y-auto" style={{ maxHeight: "calc(80vh - 60px)" }}>
             <div className="grid grid-cols-2 gap-2.5">
               {waitingSlots.map((slotId) => {
                 const person = peopleWithoutSeat.find(

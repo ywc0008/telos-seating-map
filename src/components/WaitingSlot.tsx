@@ -13,7 +13,7 @@ export default function WaitingSlot({ id, children }: WaitingSlotProps) {
       ref={setNodeRef}
       className={`
         bg-white p-2 rounded-md border-2 
-        min-w-[120px] min-h-[90px] 
+        min-w-[60px] min-h-[80px] 
         flex items-center justify-center transition-all
         ${isOver 
           ? 'border-orange-400 bg-orange-100 scale-105' 
