@@ -11,11 +11,11 @@ import {
 import Seat from "./components/Seat";
 import Employee from "./components/Employee";
 import EmptySlot from "./components/EmptySlot";
-import UnableSeat from "./components/UnableSeat";
 import WaitingSlot from "./components/WaitingSlot";
 
 import "./App.css";
 import { EmployeeData } from "./data/employeeData";
+import emergencyExitImg from "./assets/images/emergency-exit.png";
 
 // 좌석 타입 정의
 interface SeatType {
@@ -64,7 +64,7 @@ const seats = {
   middleTwo: [
     { id: "MT1" },
     { id: "MT2" },
-    { id: "MT3" }, 
+    { id: "MT3" },
     { id: "MT4" },
     { id: "MT5" },
     { id: "MT6" },
@@ -101,8 +101,6 @@ const seats = {
     { id: "R6" },
   ],
 };
-
-
 
 export default function App() {
   const [people, setPeople] = useState<EmployeeInterface[]>(EmployeeData);
@@ -152,14 +150,14 @@ export default function App() {
     if (over && active) {
       const activePersonId = active.id as string;
       const overSeatId = over.id as string;
-      
+
       // 대기 영역으로 이동하는 경우
       if (overSeatId.startsWith("waiting-")) {
         movePerson(activePersonId, null);
       } else {
         // 이동하려는 좌석에 이미 다른 직원이 있는지 확인
         const personInTargetSeat = getPersonBySeat(overSeatId);
-        
+
         if (personInTargetSeat) {
           // 자리 교체: 두 직원의 좌석을 서로 바꿈
           const activePerson = getPersonById(activePersonId);
@@ -254,7 +252,9 @@ export default function App() {
           <div className="flex space-x-10">
             {/* 창고구역 */}
             <div className="border-2 border-gray-300 p-2.5 bg-white rounded-lg">
-              <h3 className="text-center font-semibold text-nowrap">창고구역</h3>
+              <h3 className="text-center font-semibold text-nowrap">
+                창고구역
+              </h3>
             </div>
 
             {/* 상단 영역 */}
@@ -299,20 +299,23 @@ export default function App() {
             {/* 비상구 */}
             <div className="col-start-3 row-start-1 flex flex-col gap-2.5">
               <div className="bg-green-500 text-white p-5 text-center rounded-md">
+                <img src={emergencyExitImg} alt="비상구" className="size-8 h-auto" />
                 비상구
               </div>
-              <div className="bg-gray-200 p-5 text-center rounded-md">
+              {/* <div className="bg-gray-200 p-5 text-center rounded-md">
                스낵바
-              </div>
+              </div> */}
             </div>
           </div>
 
-          <div className="flex space-x-10 ml-[150px]">
-            {/* 휴게공간 */}
-            <div className="border-2 border-gray-300 p-2.5 bg-white rounded-lg">
-              <h3 className="text-center font-semibold mb-2.5">휴게공간</h3>
-              <div className="bg-gray-200 h-24 flex items-center justify-center rounded">
-                책장
+          <div className="flex space-x-10 ml-[120px]">
+            {/* 휴게공간 & 책장 */}
+            <div className="flex ">
+              <div className="w-24 border-2 border-gray-300 p-2.5 bg-white rounded-lg">
+                <h3 className="text-center font-semibold">휴게공간</h3>
+              </div>
+              <div className="w-13 border-2 border-gray-300 p-2.5 bg-gray-200 rounded-lg">
+                <h3 className="text-center font-semibold">책장</h3>
               </div>
             </div>
 
@@ -347,63 +350,69 @@ export default function App() {
               ))}
             </div>
 
-            {/* 탕비실 & 싱크대 */}
-            <div className="flex flex-col gap-2.5">
-              <div className="bg-blue-500 text-white p-5 text-center rounded-md">
+            {/* 탕비실 */}
+            <div className="self-stretch">
+              <div className="max-h-[350px] h-full bg-blue-500 text-white p-5 text-center rounded-md [writing-mode:vertical-rl]">
                 탕비실
-              </div>
-              <div className="bg-blue-400 text-white p-5 text-center rounded-md">
-                싱크대
               </div>
             </div>
           </div>
-          
-          <div className="flex ml-[150px]">
+
+          <div className="flex ">
             {/* 회의실 1 & 2 */}
-            <div className="col-span-2 row-start-3 flex gap-5">
-              <div className="flex-1 border-2 border-gray-300 p-5 bg-white rounded-lg">
+            <div className=" col-span-2 row-start-3 flex gap-5">
+              <div className="w-[600px] border-2 border-gray-300 p-5 bg-white rounded-lg">
                 <h3 className="text-center font-semibold mb-5">회의실 1</h3>
-                <div className="grid grid-cols-5 gap-2.5">
+                {/* <div className="grid grid-cols-5 gap-2.5">
                   {seats.meeting1.map((seat) => (
                     <UnableSeat key={seat.id} />
                   ))}
-                </div>
+                </div> */}
               </div>
 
               <div className="w-[300px] border-2 border-gray-300 p-5 bg-white rounded-lg">
                 <h3 className="text-center font-semibold mb-5">회의실 2</h3>
-                <div className="grid grid-cols-3 gap-2.5">
+                {/* <div className="grid grid-cols-3 gap-2.5">
                   {seats.meeting2.map((seat) => (
                     <UnableSeat key={seat.id} />
                   ))}
-                </div>
+                </div> */}
               </div>
             </div>
 
             {/* 방 */}
             <div className="col-start-3 row-start-3 flex flex-col gap-2.5">
-              <div className="bg-gray-200 p-5 text-center mb-2.5 rounded">
+              {/* <div className="bg-gray-200 p-5 text-center mb-2.5 rounded">
                 책장
-              </div>
+              </div> */}
               <div className="grid grid-cols-3 gap-2.5">
                 {/* 1번 위치 */}
-                <div key="room-1">{renderSeat(seats.room[0])}</div>
+                <div key="R1">{renderSeat(seats.room[0])}</div>
                 {/* 2번 위치 - 빈 공간 */}
-                <div key="room-empty-2" className="min-w-[80px] min-h-[90px]"></div>
+                <div
+                  key="room-empty-2"
+                  className="min-w-[80px] min-h-[90px]"
+                ></div>
                 {/* 3번 위치 */}
-                <div key="room-3">{renderSeat(seats.room[1])}</div>
+                <div key="R2">{renderSeat(seats.room[1])}</div>
                 {/* 4번 위치 - 빈 공간 */}
-                <div key="room-empty-4" className="min-w-[80px] min-h-[90px]"></div>
+                <div
+                  key="room-empty-4"
+                  className="min-w-[80px] min-h-[90px]"
+                ></div>
                 {/* 5번 위치 - 빈 공간 */}
-                <div key="room-empty-5" className="min-w-[80px] min-h-[90px]"></div>
+                <div
+                  key="room-empty-5"
+                  className="min-w-[80px] min-h-[90px]"
+                ></div>
                 {/* 6번 위치 */}
-                <div key="room-6">{renderSeat(seats.room[2])}</div>
+                <div key="R3">{renderSeat(seats.room[2])}</div>
                 {/* 7번 위치 */}
-                <div key="room-7">{renderSeat(seats.room[3])}</div>
+                <div key="R4">{renderSeat(seats.room[3])}</div>
                 {/* 8번 위치 */}
-                <div key="room-8">{renderSeat(seats.room[4])}</div>
+                <div key="R5">{renderSeat(seats.room[4])}</div>
                 {/* 9번 위치 */}
-                <div key="room-9">{renderSeat(seats.room[5])}</div>
+                <div key="R6">{renderSeat(seats.room[5])}</div>
               </div>
             </div>
           </div>
