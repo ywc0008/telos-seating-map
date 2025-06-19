@@ -194,7 +194,7 @@ export const EmployeeData: EmployeeInterface[] = [
   {
     id: "p24",
     name: "이용주",
-    position: "대리",
+    position: "부장",
     department: "서비스팀",
     gender: "male" as const,
     seat: "UO4",
