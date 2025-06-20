@@ -55,9 +55,16 @@ const seats = {
     { id: "UTh6" },
   ],
   // 상고구역 4
-  upperFour: [{ id: "UF1" }, { id: "UF2" }, { id: "UF3" }],
+  upperFour: [
+    { id: "UF1" },
+    { id: "UF2" },
+    { id: "UF3" },
+    { id: "UF4" },
+    { id: "UF5" },
+    { id: "UF6" },
+  ],
   // 상고구역 5
-  upperFive: [{ id: "UFi1" }, { id: "UFi2" }, { id: "UFi3" }],
+  // upperFive: [{ id: "UFi1" }, { id: "UFi2" }, { id: "UFi3" }],
 
   // 가운데 1
   middleOne: [{ id: "MO1" }, { id: "MO2" }, { id: "MO3" }],
@@ -300,19 +307,17 @@ export default function App() {
 
             <div className="w-4 bg-black self-stretch" />
 
-            <div className="grid grid-cols-1 gap-10">
+            <div className="grid grid-cols-2 gap-10">
               {seats.upperFour.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
             </div>
 
-            <div className="w-4 bg-black self-stretch" />
-
-            <div className="grid grid-cols-1 gap-10">
+            {/* <div className="grid grid-cols-1 gap-10">
               {seats.upperFive.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
-            </div>
+            </div> */}
 
             {/* 비상구 */}
             <div className="col-start-3 row-start-1 flex flex-col gap-2.5">

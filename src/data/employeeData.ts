@@ -15,7 +15,6 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "대리",
     department: "전략경영팀",
     gender: "female" as const,
-    seat: "UFi2",
   },
   {
     id: "p3",
@@ -31,7 +30,6 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "수습",
     department: "전략경영팀",
     gender: "female" as const,
-    seat: "UFi1",
   },
   {
     id: "p5",
@@ -39,7 +37,6 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "실장",
     department: "전략경영팀",
     gender: "male" as const,
-    seat: "UFi3",
   },
   // 디자인팀
   {
@@ -156,7 +153,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "과장",
     department: "R&D팀",
     gender: "male" as const,
-    seat: "R5",
+    seat: "UF6",
   },
   {
     id: "p20",
@@ -164,7 +161,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "대리",
     department: "R&D팀",
     gender: "female" as const,
-    seat: "R6",
+    seat: "UF4",
   },
   {
     id: "p21",
@@ -172,7 +169,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "대리",
     department: "R&D팀",
     gender: "female" as const,
-    seat: "R2",
+    seat: "UF3",
   },
   {
     id: "p22",
@@ -180,7 +177,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "수습",
     department: "R&D팀",
     gender: "female" as const,
-    seat: "R3",
+    seat: "UF2",
   },
   {
     id: "p23",
@@ -188,7 +185,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "주임",
     department: "R&D팀",
     gender: "male" as const,
-    seat: "R4",
+    seat: "UF5",
   },
   // 서비스팀
   {
