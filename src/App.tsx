@@ -8,106 +8,16 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 
-import Seat from "./components/Seat";
 import Employee from "./components/Employee";
-import EmptySlot from "./components/EmptySlot";
 import WaitingSlot from "./components/WaitingSlot";
 import Gogi from "./components/Gogi";
 
+// Layout Components
+import UpperSection from "./components/layout/UpperSection";
+import MiddleSection from "./components/layout/MiddleSection";
+import LowerSection from "./components/layout/LowerSection";
+
 import { EmployeeData } from "./data/employeeData";
-import emergencyExitImg from "./assets/images/emergency-exit.png";
-
-// 좌석 타입 정의
-interface SeatType {
-  id: string;
-  label?: string;
-  empty?: boolean;
-}
-
-// 좌석 데이터 - 실제 배치도와 동일하게 구성
-const seats = {
-  // 상고구역 1
-  upperOne: [
-    { id: "UO1" },
-    { id: "UO2" },
-    { id: "UO3" },
-    { id: "UO4" },
-    { id: "UO5" },
-    { id: "UO6" },
-  ],
-  // 상고구역 2
-  upperTwo: [
-    { id: "UT1" },
-    { id: "UT2" },
-    { id: "UT3", empty: true },
-    { id: "UT4" },
-    { id: "UT5" },
-    { id: "UT6" },
-  ],
-  // 상고구역 3
-  upperThree: [
-    { id: "UTh1" },
-    { id: "UTh2" },
-    { id: "UTh3" },
-    { id: "UTh4", empty: true },
-    { id: "UTh5" },
-    { id: "UTh6" },
-  ],
-  // 상고구역 4
-  upperFour: [
-    { id: "UF1" },
-    { id: "UF2" },
-    { id: "UF3" },
-    { id: "UF4" },
-    { id: "UF5" },
-    { id: "UF6" },
-  ],
-  // 상고구역 5
-  // upperFive: [{ id: "UFi1" }, { id: "UFi2" }, { id: "UFi3" }],
-
-  // 가운데 1
-  middleOne: [{ id: "MO1" }, { id: "MO2" }, { id: "MO3" }],
-  // 가운데 2
-  middleTwo: [
-    { id: "MT1" },
-    { id: "MT2" },
-    { id: "MT3" },
-    { id: "MT4" },
-    { id: "MT5" },
-    { id: "MT6" },
-  ],
-  // 가운데 3
-  middleThree: [
-    { id: "MTh1" },
-    { id: "MTh2" },
-    { id: "MTh3" },
-    { id: "MTh4" },
-    { id: "MTh5" },
-    { id: "MTh6" },
-  ],
-  // 가운데 4
-  middleFour: [{ id: "MF1" }, { id: "MF2" }, { id: "MF3" }],
-
-  // 회의실 1
-  meeting1: Array.from({ length: 10 }, (_, i) => ({
-    id: `M1-${i + 1}`,
-    label: "",
-  })),
-  // 회의실 2
-  meeting2: Array.from({ length: 8 }, (_, i) => ({
-    id: `M2-${i + 1}`,
-    label: "",
-  })),
-  // room
-  room: [
-    { id: "R1" },
-    { id: "R2" },
-    { id: "R3" },
-    { id: "R4" },
-    { id: "R5" },
-    { id: "R6" },
-  ],
-};
 
 export default function App() {
   const [people, setPeople] = useState<EmployeeInterface[]>(EmployeeData);
@@ -246,26 +156,6 @@ export default function App() {
     };
   }, [isDraggingPanel]);
 
-  // 좌석 렌더링 헬퍼 함수
-  const renderSeat = (seat: SeatType) => {
-    if (seat.empty) {
-      return <EmptySlot />;
-    }
-
-    const person = getPersonBySeat(seat.id);
-
-    return (
-      <Seat id={seat.id}>
-        {person && (
-          <Employee
-            employeeData={person}
-            onMiddleClick={() => handleEmployeeDoubleClick(person.id)}
-          />
-        )}
-      </Seat>
-    );
-  };
-
   return (
     <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
       <div className="max-h-screen bg-gray-100 p-4">
@@ -274,175 +164,23 @@ export default function App() {
         </h1>
 
         <div className="flex flex-col gap-4 max-w-7xl mx-auto">
-          <div className="flex space-x-10">
-            {/* 창고구역 */}
-            <div className="border-2 border-gray-300 p-2.5 bg-white rounded-lg">
-              <h3 className="text-center font-semibold text-nowrap">
-                창고구역
-              </h3>
-            </div>
+          {/* 상단 영역 */}
+          <UpperSection
+            people={people}
+            onEmployeeDoubleClick={handleEmployeeDoubleClick}
+          />
 
-            {/* 상단 영역 */}
-            <div className="grid grid-cols-2 gap-4">
-              {seats.upperOne.map((seat) => (
-                <div key={seat.id}>{renderSeat(seat)}</div>
-              ))}
-            </div>
+          {/* 중단 영역 */}
+          <MiddleSection
+            people={people}
+            onEmployeeDoubleClick={handleEmployeeDoubleClick}
+          />
 
-            <div className="w-4 bg-black self-stretch" />
-
-            <div className="grid grid-cols-2 gap-4">
-              {seats.upperTwo.map((seat) => (
-                <div key={seat.id}>{renderSeat(seat)}</div>
-              ))}
-            </div>
-
-            <div className="w-4 bg-black self-stretch" />
-
-            <div className="grid grid-cols-2 gap-4">
-              {seats.upperThree.map((seat) => (
-                <div key={seat.id}>{renderSeat(seat)}</div>
-              ))}
-            </div>
-
-            <div className="w-4 bg-black self-stretch" />
-
-            <div className="grid grid-cols-2 gap-4">
-              {seats.upperFour.map((seat) => (
-                <div key={seat.id}>{renderSeat(seat)}</div>
-              ))}
-            </div>
-
-            {/* <div className="grid grid-cols-1 gap-4">
-              {seats.upperFive.map((seat) => (
-                <div key={seat.id}>{renderSeat(seat)}</div>
-              ))}
-            </div> */}
-
-            {/* 비상구 */}
-            <div className="col-start-3 row-start-1 flex flex-col gap-2.5">
-              <div className="flex flex-col bg-green-500 text-white p-5 text-center rounded-md [writing-mode:vertical-rl]">
-                <img
-                  src={emergencyExitImg}
-                  alt="비상구"
-                  className="size-8 h-auto"
-                />
-                <span>비상구</span>
-              </div>
-              {/* <div className="bg-gray-200 p-5 text-center rounded-md">
-               스낵바
-              </div> */}
-            </div>
-          </div>
-
-          <div className="flex space-x-10 ml-[120px]">
-            {/* 휴게공간 & 책장 */}
-            <div className="flex">
-              <div className="w-24 border-2 border-gray-300 p-2.5 bg-white rounded-lg">
-                <h3 className="text-center font-semibold">휴게공간</h3>
-              </div>
-              <div className="w-13 border-2 border-gray-300 p-2.5 bg-gray-200 rounded-lg">
-                <h3 className="text-center font-semibold">책장</h3>
-              </div>
-            </div>
-
-            {/* 중앙 좌석들 */}
-            <div className="grid grid-cols-1 gap-4">
-              {seats.middleOne.map((seat) => (
-                <div key={seat.id}>{renderSeat(seat)}</div>
-              ))}
-            </div>
-
-            <div className="w-4 bg-black self-stretch" />
-
-            <div className="grid grid-cols-2 gap-4">
-              {seats.middleTwo.map((seat) => (
-                <div key={seat.id}>{renderSeat(seat)}</div>
-              ))}
-            </div>
-
-            <div className="w-4 bg-black self-stretch" />
-
-            <div className="grid grid-cols-2 gap-4">
-              {seats.middleThree.map((seat) => (
-                <div key={seat.id}>{renderSeat(seat)}</div>
-              ))}
-            </div>
-
-            <div className="w-4 bg-black self-stretch" />
-
-            <div className="grid grid-cols-1 gap-4">
-              {seats.middleFour.map((seat) => (
-                <div key={seat.id}>{renderSeat(seat)}</div>
-              ))}
-            </div>
-
-            {/* 탕비실 */}
-            <div className="self-stretch">
-              <div className="max-h-[270px] h-full bg-blue-500 text-white p-5 text-center rounded-md [writing-mode:vertical-rl]">
-                탕비실
-              </div>
-            </div>
-          </div>
-
-          <div className="flex ">
-            {/* 회의실 1 & 2 */}
-            <div className=" col-span-2 row-start-3 flex gap-5">
-              <div className="w-[600px] border-2 border-gray-300 p-5 bg-white rounded-lg">
-                <h3 className="text-center font-semibold mb-5">회의실 1</h3>
-                {/* <div className="grid grid-cols-5 gap-2.5">
-                  {seats.meeting1.map((seat) => (
-                    <UnableSeat key={seat.id} />
-                  ))}
-                </div> */}
-              </div>
-
-              <div className="w-[300px] border-2 border-gray-300 p-5 bg-white rounded-lg">
-                <h3 className="text-center font-semibold mb-5">회의실 2</h3>
-                {/* <div className="grid grid-cols-3 gap-2.5">
-                  {seats.meeting2.map((seat) => (
-                    <UnableSeat key={seat.id} />
-                  ))}
-                </div> */}
-              </div>
-            </div>
-
-            {/* 방 */}
-            <div className="col-start-3 row-start-3 flex flex-col gap-2.5">
-              {/* <div className="bg-gray-200 p-5 text-center mb-2.5 rounded">
-                책장
-              </div> */}
-              <div className="grid grid-cols-3 gap-2.5">
-                {/* 1번 위치 */}
-                <div key="room-pos-1">{renderSeat(seats.room[0])}</div>
-                {/* 2번 위치 - 빈 공간 */}
-                <div
-                  key="room-empty-2"
-                  className="min-w-[80px] min-h-[90px]"
-                ></div>
-                {/* 3번 위치 */}
-                <div key="room-pos-3">{renderSeat(seats.room[1])}</div>
-                {/* 4번 위치 - 빈 공간 */}
-                <div
-                  key="room-empty-4"
-                  className="min-w-[80px] min-h-[90px]"
-                ></div>
-                {/* 5번 위치 - 빈 공간 */}
-                <div
-                  key="room-empty-5"
-                  className="min-w-[80px] min-h-[90px]"
-                ></div>
-                {/* 6번 위치 */}
-                <div key="room-pos-6">{renderSeat(seats.room[2])}</div>
-                {/* 7번 위치 */}
-                <div key="room-pos-7">{renderSeat(seats.room[3])}</div>
-                {/* 8번 위치 */}
-                <div key="room-pos-8">{renderSeat(seats.room[4])}</div>
-                {/* 9번 위치 */}
-                <div key="room-pos-9">{renderSeat(seats.room[5])}</div>
-              </div>
-            </div>
-          </div>
+          {/* 하단 영역 */}
+          <LowerSection
+            people={people}
+            onEmployeeDoubleClick={handleEmployeeDoubleClick}
+          />
         </div>
 
         {/* 고양이 - 절대 위치 */}
