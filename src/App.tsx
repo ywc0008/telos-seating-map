@@ -158,19 +158,20 @@ export default function App() {
   }
 
   function handleDragEnd(event: DragEndEvent) {
-    const { over, active, delta } = event;
+    const { over, active } = event;
     if (active) {
       const activeId = active.id as string;
 
       // 고양이를 드래그하는 경우
       if (activeId === "gogi") {
-        // 현재 드래그 위치를 절대 위치로 설정
-        const currentX = gogiPosition?.x || window.innerWidth - 400;
-        const currentY = gogiPosition?.y || 150;
-        setGogiPosition({
-          x: currentX + delta.x,
-          y: currentY + delta.y,
-        });
+        // 드래그 종료 시점의 위치를 사용
+        const rect = active.rect.current.translated;
+        if (rect) {
+          setGogiPosition({
+            x: rect.left,
+            y: rect.top,
+          });
+        }
       } else if (over) {
         // 직원을 드래그하는 경우
         const activePersonId = activeId;
@@ -449,7 +450,7 @@ export default function App() {
         {gogiPosition && (
           <div
             style={{
-              position: "fixed",
+              position: "absolute",
               left: `${gogiPosition.x}px`,
               top: `${gogiPosition.y}px`,
               zIndex: 999,
