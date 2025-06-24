@@ -4,10 +4,10 @@ interface EmptySlotProps {
 
 export default function EmptySlot({ className = "" }: EmptySlotProps) {
   return (
-    <div 
+    <div
       className={`
         min-w-[80px]
-        min-h-[90px] 
+        min-h-[80px] 
         border-2 
         border-dashed 
         border-gray-300 
@@ -16,4 +16,4 @@ export default function EmptySlot({ className = "" }: EmptySlotProps) {
       `}
     />
   );
-} 
+}

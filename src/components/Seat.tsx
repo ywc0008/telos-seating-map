@@ -1,4 +1,4 @@
-import { useDroppable } from '@dnd-kit/core';
+import { useDroppable } from "@dnd-kit/core";
 
 interface SeatProps {
   id: string;
@@ -6,7 +6,7 @@ interface SeatProps {
 }
 
 export default function Seat({ id, children }: SeatProps) {
-  const { isOver, setNodeRef, active } = useDroppable({ 
+  const { isOver, setNodeRef, active } = useDroppable({
     id,
     // disabled 제거 - 자리 교체를 위해 항상 드롭 가능하게 함
   });
@@ -19,31 +19,18 @@ export default function Seat({ id, children }: SeatProps) {
       ref={setNodeRef}
       className={`
         relative
-        min-w-[80px]
-        min-h-[90px] 
-        p-2
+        min-w-[80px] 
+        min-h-[80px] 
         border-2 
         rounded-md 
         flex 
         items-center 
         justify-center 
         transition-all
-        ${isOccupied 
-          ? 'bg-white border-gray-300' 
-          : 'bg-white border-gray-400'
-        }
-        ${isOver && !isOccupied
-          ? 'border-blue-500 bg-blue-50 scale-105' 
-          : ''
-        }
-        ${isDraggingOverOccupied
-          ? 'border-yellow-500 bg-yellow-50' 
-          : ''
-        }
-        ${!isOccupied && !isOver
-          ? 'hover:bg-gray-50'
-          : ''
-        }
+        ${isOccupied ? "bg-white border-gray-300" : "bg-white border-gray-400"}
+        ${isOver && !isOccupied ? "border-blue-500 bg-blue-50 scale-105" : ""}
+        ${isDraggingOverOccupied ? "border-yellow-500 bg-yellow-50" : ""}
+        ${!isOccupied && !isOver ? "hover:bg-gray-50" : ""}
       `}
     >
       {isDraggingOverOccupied && (
@@ -54,4 +41,4 @@ export default function Seat({ id, children }: SeatProps) {
       {children}
     </div>
   );
-} 
+}

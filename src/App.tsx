@@ -14,7 +14,6 @@ import EmptySlot from "./components/EmptySlot";
 import WaitingSlot from "./components/WaitingSlot";
 import Gogi from "./components/Gogi";
 
-import "./App.css";
 import { EmployeeData } from "./data/employeeData";
 import emergencyExitImg from "./assets/images/emergency-exit.png";
 
@@ -269,12 +268,12 @@ export default function App() {
 
   return (
     <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-      <div className="min-h-screen bg-gray-100 p-5">
-        <h1 className="text-center text-3xl font-bold mb-8">
+      <div className="max-h-screen bg-gray-100 p-4">
+        <h1 className="text-center text-3xl font-bold mb-4">
           텔로스 자리배치도
         </h1>
 
-        <div className="flex flex-col gap-5 max-w-7xl mx-auto">
+        <div className="flex flex-col gap-4 max-w-7xl mx-auto">
           <div className="flex space-x-10">
             {/* 창고구역 */}
             <div className="border-2 border-gray-300 p-2.5 bg-white rounded-lg">
@@ -284,7 +283,7 @@ export default function App() {
             </div>
 
             {/* 상단 영역 */}
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-2 gap-4">
               {seats.upperOne.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
@@ -292,7 +291,7 @@ export default function App() {
 
             <div className="w-4 bg-black self-stretch" />
 
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-2 gap-4">
               {seats.upperTwo.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
@@ -300,7 +299,7 @@ export default function App() {
 
             <div className="w-4 bg-black self-stretch" />
 
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-2 gap-4">
               {seats.upperThree.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
@@ -308,13 +307,13 @@ export default function App() {
 
             <div className="w-4 bg-black self-stretch" />
 
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-2 gap-4">
               {seats.upperFour.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
             </div>
 
-            {/* <div className="grid grid-cols-1 gap-10">
+            {/* <div className="grid grid-cols-1 gap-4">
               {seats.upperFive.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
@@ -322,13 +321,13 @@ export default function App() {
 
             {/* 비상구 */}
             <div className="col-start-3 row-start-1 flex flex-col gap-2.5">
-              <div className="bg-green-500 text-white p-5 text-center rounded-md">
+              <div className="flex flex-col bg-green-500 text-white p-5 text-center rounded-md [writing-mode:vertical-rl]">
                 <img
                   src={emergencyExitImg}
                   alt="비상구"
                   className="size-8 h-auto"
                 />
-                비상구
+                <span>비상구</span>
               </div>
               {/* <div className="bg-gray-200 p-5 text-center rounded-md">
                스낵바
@@ -338,7 +337,7 @@ export default function App() {
 
           <div className="flex space-x-10 ml-[120px]">
             {/* 휴게공간 & 책장 */}
-            <div className="flex ">
+            <div className="flex">
               <div className="w-24 border-2 border-gray-300 p-2.5 bg-white rounded-lg">
                 <h3 className="text-center font-semibold">휴게공간</h3>
               </div>
@@ -348,7 +347,7 @@ export default function App() {
             </div>
 
             {/* 중앙 좌석들 */}
-            <div className="grid grid-cols-1 gap-10">
+            <div className="grid grid-cols-1 gap-4">
               {seats.middleOne.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
@@ -356,7 +355,7 @@ export default function App() {
 
             <div className="w-4 bg-black self-stretch" />
 
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-2 gap-4">
               {seats.middleTwo.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
@@ -364,7 +363,7 @@ export default function App() {
 
             <div className="w-4 bg-black self-stretch" />
 
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-2 gap-4">
               {seats.middleThree.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
@@ -372,7 +371,7 @@ export default function App() {
 
             <div className="w-4 bg-black self-stretch" />
 
-            <div className="grid grid-cols-1 gap-10">
+            <div className="grid grid-cols-1 gap-4">
               {seats.middleFour.map((seat) => (
                 <div key={seat.id}>{renderSeat(seat)}</div>
               ))}
@@ -380,7 +379,7 @@ export default function App() {
 
             {/* 탕비실 */}
             <div className="self-stretch">
-              <div className="max-h-[350px] h-full bg-blue-500 text-white p-5 text-center rounded-md [writing-mode:vertical-rl]">
+              <div className="max-h-[270px] h-full bg-blue-500 text-white p-5 text-center rounded-md [writing-mode:vertical-rl]">
                 탕비실
               </div>
             </div>
