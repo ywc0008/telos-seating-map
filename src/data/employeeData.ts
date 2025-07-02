@@ -15,6 +15,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "대리",
     department: "전략경영팀",
     gender: "female" as const,
+    seat: "R6",
   },
   {
     id: "p3",
@@ -30,6 +31,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "수습",
     department: "전략경영팀",
     gender: "female" as const,
+    seat: "R4",
   },
   {
     id: "p5",
@@ -37,6 +39,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "실장",
     department: "전략경영팀",
     gender: "male" as const,
+    seat: "R5",
   },
   // 디자인팀
   {
@@ -45,7 +48,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "과장",
     department: "디자인팀",
     gender: "female" as const,
-    seat: "MF2",
+    seat: "MF3",
   },
   {
     id: "p7",
@@ -53,7 +56,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "주임",
     department: "디자인팀",
     gender: "female" as const,
-    seat: "MF3",
+    seat: "MF2",
 
   },
   // 마케팅팀
@@ -260,7 +263,6 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "본부장",
     department: "전북영업본부",
     gender: "male" as const,
-    seat: "UF1",
   },
   // 프린트
   {
