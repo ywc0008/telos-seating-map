@@ -193,7 +193,7 @@ export default function App() {
               zIndex: 999,
             }}
           >
-            <Gogi id="gogi" name="고기" />
+            <Gogi id="gogi" name="고기" isPlaced={!!gogiPosition} />
           </div>
         )}
 
@@ -225,7 +225,7 @@ export default function App() {
               {/* 고양이가 처음에 여기에 표시 */}
               {!gogiPosition && (
                 <div className="bg-orange-100 p-2 rounded-md border-2 border-orange-300 min-h-[90px] flex items-center justify-center">
-                  <Gogi id="gogi" name="고기" />
+                  <Gogi id="gogi" name="고기" isPlaced={!!gogiPosition} />
                 </div>
               )}
               {waitingSlots.map((slotId) => {
