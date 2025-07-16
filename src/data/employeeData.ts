@@ -57,7 +57,6 @@ export const EmployeeData: EmployeeInterface[] = [
     department: "디자인팀",
     gender: "female" as const,
     seat: "MF2",
-
   },
   // 마케팅팀
   {
@@ -263,6 +262,7 @@ export const EmployeeData: EmployeeInterface[] = [
     position: "본부장",
     department: "전북영업본부",
     gender: "male" as const,
+    seat: "R2",
   },
   // 프린트
   {
@@ -272,5 +272,5 @@ export const EmployeeData: EmployeeInterface[] = [
     department: "",
     gender: "male" as const,
     seat: "MTh1",
-  }
+  },
 ];
