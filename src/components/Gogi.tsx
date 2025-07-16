@@ -30,7 +30,7 @@ export default function Gogi({ id, name = "고기", isPlaced = false }: GogiProp
       ];
       
       const randomDirection = directions[Math.floor(Math.random() * directions.length)];
-      const moveDistance = Math.random() * 50 + 30; // 30-80px 랜덤 이동
+      const moveDistance = Math.random() * 50 + 50; // 50-100px 랜덤 이동
       
       setPosition(prev => ({
         x: prev.x + randomDirection.x * moveDistance,
